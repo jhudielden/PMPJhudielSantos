@@ -37,7 +37,7 @@ public class Menu_Manager_Pause : Menu_Manager
     {
         base.Validation();
 
-        screenDatas = FindObjectsOfType<MenuScreenContent>();
+        screenDatas = FindObjectsByType<MenuScreenContent>(FindObjectsSortMode.InstanceID);
 
         // Filter to only MenuScreenContent_Pause and sort by PauseMenuScreenTypes order
         var sorted = screenDatas
@@ -59,7 +59,8 @@ public class Menu_Manager_Pause : Menu_Manager
 
     public void QuitToMenu()
     {
-        GameManager.SceneManager.LoadScene(MainSceneManager.GameScenes.MainMenu);
+        // TODO: Require Scene Manager
+        //GameManager.SceneManager.LoadScene(MainSceneManager.GameScenes.MainMenu);
         print("Quit to Menu...");
     }
 

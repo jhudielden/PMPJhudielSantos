@@ -9,7 +9,7 @@ public class Menu_Manager_Main : Menu_Manager
     {
         base.Validation();
 
-        screenDatas = FindObjectsOfType<MenuScreenContent>();
+        screenDatas = FindObjectsByType<MenuScreenContent>(FindObjectsSortMode.InstanceID);
 
         // Filter to only MenuScreenContent_Pause and sort by PauseMenuScreenTypes order
         var sorted = screenDatas
