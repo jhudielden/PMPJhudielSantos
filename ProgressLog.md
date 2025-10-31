@@ -1,2 +1,6 @@
 # 000 Making the Repository and current progress of the porject
-I still had to ask for help for uploading and creaeting this darn repository but finally actually made the project file. All I had for the project was the old prototype from 2nd year and some progress on the Game Design Document.
+I still had to ask for help for uploading and creating this darn repository but finally actually made the project file. All I had for the project was the old prototype from 2nd year and some progress on the Game Design Document. 
+The prototype is now at least made and has some bones, Sam whose agreed to do a trade; I help him with his game on music at least 3 deliverables and he'll help me with some code specifically with Main Menu and Pause menu.
+What's been done in terms of bones is that some tags have been made that will be referenced in code, and start of the PlayerCharacter script has been made, inputted the variables that will be used later in the script.
+Sam made me download a unity package called Editor Attributes to help with the project.
+Key takeaways I'll need to do is relearn the markdowns that GitHub uses since I've kinda forgotten, and use my tasklist more, it has the basis of things I need to do for this project.
