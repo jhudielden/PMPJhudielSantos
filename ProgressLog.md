@@ -6,3 +6,5 @@ Sam made me download a unity package called Editor Attributes to help with the p
 Key takeaways I'll need to do is relearn the markdowns that GitHub uses since I've kinda forgotten, and use my tasklist more, it has the basis of things I need to do for this project.
 # 002 Movement Progress 2025/10/31 
 This was quite simple-ish to implement, copying and pasting from my the initial prototype. Cleaning up just some of the formatting the code so it's easier for me to read, skim or comb thorugh for possible problems. I attempted to make the clamp of the the sling shot movement with min and max values. The errors that came up weirdly was about the  'LineRenderer.SetPosition is set out of bounds'   
+# 003 Camera Jitteryness and Movement Clean-up
+Huzzah! The clamp on the player movement is working! The problem was literally inputing the clamp values in Unity incorrectly. I only did it in the x values and not the y. And also forgetting about the z values despite being in 2D, still matters in being changed. The player movement felt so much better and all it is now is making a test level design to figure out the correct balance of sling force and sling shot clamping.
