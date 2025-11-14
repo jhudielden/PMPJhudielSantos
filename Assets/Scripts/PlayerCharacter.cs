@@ -46,6 +46,7 @@ public class PlayerCharacter : MonoBehaviour
                 Movement();
             }
             isDragging = false;
+            lr.enabled = false;
         }
 
         if (isDragging)
@@ -64,7 +65,7 @@ public class PlayerCharacter : MonoBehaviour
         else
         { lr.enabled = false; }
     }
-       void Movement ()
+    void Movement ()
     {
         if (stroke == true)
         {
