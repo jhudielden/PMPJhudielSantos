@@ -858,9 +858,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd0cd7a354584c40883466ddcbf91b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slingForce: 2.4
-  minPower: {x: -3, y: 0, z: 0}
-  maxPower: {x: -3, y: 0, z: 0}
+  slingForce: 1.9
+  minPower: {x: 0, y: -3, z: 0}
+  maxPower: {x: 0, y: 3, z: 0}
   stroke: 0
   isDragging: 1
   lr: {fileID: 1578550201}

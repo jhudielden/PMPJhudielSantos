@@ -5,9 +5,9 @@ public class PlayerCharacter : MonoBehaviour
 {
     private Vector3 mouse_downposition;
     private Vector3 mouse_upposition;
-    //private Vector2 force;
+    private Vector2 force;
     public float slingForce;
-    private float force;
+    //private float force;
     public Vector3 minPower;
     public Vector3 maxPower;
     [SerializeField] private bool stroke;
@@ -69,8 +69,9 @@ public class PlayerCharacter : MonoBehaviour
         if (stroke == true)
         {
             Vector3 direction = mouse_upposition - mouse_downposition;
-            //force = new Vector2 (Mathf.Clamp(mouse_upposition.x - mouse_downposition.x, minPower.x, maxPower.x), Mathf.Clamp(mouse_upposition.y - mouse_downposition.y, minPower.y, maxPower.y));
-            rb.AddForce(- direction * slingForce, ForceMode2D.Impulse);
+            force = new Vector2 (Mathf.Clamp(mouse_upposition.x - mouse_downposition.x, minPower.x, maxPower.x), Mathf.Clamp(mouse_upposition.y - mouse_downposition.y, minPower.y, maxPower.y));
+            rb.AddForce(- force * slingForce, ForceMode2D.Impulse);
+            //rb.AddForce(- direction * slingForce, ForceMode2D.Impulse);
         }
     }
 
