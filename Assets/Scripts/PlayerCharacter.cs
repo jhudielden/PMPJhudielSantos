@@ -67,7 +67,7 @@ public class PlayerCharacter : MonoBehaviour
     }
     void Movement ()
     {
-        if (stroke == true)
+        if (stroke)
         {
             Vector3 direction = mouse_upposition - mouse_downposition;
             force = new Vector2 (Mathf.Clamp(mouse_upposition.x - mouse_downposition.x, minPower.x, maxPower.x), Mathf.Clamp(mouse_upposition.y - mouse_downposition.y, minPower.y, maxPower.y));
