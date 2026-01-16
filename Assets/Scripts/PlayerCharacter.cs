@@ -7,6 +7,7 @@ public class PlayerCharacter : MonoBehaviour
     private Vector3 mouse_upposition;
     private Vector2 direction;
     public float slingForce;
+    public float speed;
     public Vector3 minPower;
     public Vector3 maxPower;
     [SerializeField] private bool stroke;
@@ -100,4 +101,5 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
     // makes sure the player character can only make movement if on a platform avoiding double inputs
+
 }
