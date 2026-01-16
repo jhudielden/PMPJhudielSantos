@@ -16,6 +16,7 @@ public class CameraFollow : MonoBehaviour
     void Update()
     {
         Vector3 targetPosition = target.position + offset;
+        // offset to add a bit of a camera drag in Unity  
         Vector3 boundPosition = new Vector3(
               Mathf.Clamp(targetPosition.x, minValues.x, maxValues.x),
               Mathf.Clamp(targetPosition.y, minValues.y, maxValues.y),
@@ -23,5 +24,6 @@ public class CameraFollow : MonoBehaviour
               );
 
         transform.position = Vector3.Lerp(transform.position, boundPosition, FollowSpeed * Time.deltaTime);
+        // Linear interpolations, so smooth transition between both pointss
     }
 }

@@ -17,10 +17,11 @@ public class MovingPlatform : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, nextPosition, moveSpeed * Time.deltaTime);
-
+        // what actually moves the position incrementally toward the next position
         if (transform.position == nextPosition)
         {
             nextPosition = (nextPosition == pointA.position) ? pointB.position : pointA.position;
+            // gets the positions moving back and forth
         }
     }
 
@@ -38,4 +39,5 @@ public class MovingPlatform : MonoBehaviour
             collision.gameObject.transform.parent = null;
         }
     }
+    // making the player character a child of the platform object so it sticks depending on collision type
 }

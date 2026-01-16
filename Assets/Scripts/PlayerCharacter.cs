@@ -5,9 +5,8 @@ public class PlayerCharacter : MonoBehaviour
 {
     private Vector3 mouse_downposition;
     private Vector3 mouse_upposition;
-    private Vector2 force;
+    private Vector2 direction;
     public float slingForce;
-    //private float force;
     public Vector3 minPower;
     public Vector3 maxPower;
     [SerializeField] private bool stroke;
@@ -37,6 +36,7 @@ public class PlayerCharacter : MonoBehaviour
             }
 
         }
+        // getting the initial point of dragging and only is calcultated when mouse is on the player character
         if (Input.GetMouseButtonUp(0))
         {
             mouse_upposition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -48,7 +48,7 @@ public class PlayerCharacter : MonoBehaviour
             isDragging = false;
             lr.enabled = false;
         }
-
+        // getting the last point of dragging to trigger Movement
         if (isDragging)
         {
             lr.enabled = true;
@@ -64,18 +64,17 @@ public class PlayerCharacter : MonoBehaviour
 
         else
         { lr.enabled = false; }
+        //  triggers the line renderer and allows the mirror flip of player character 
     }
     void Movement ()
     {
         if (stroke == true)
         {
-            Vector3 direction = mouse_upposition - mouse_downposition;
-            force = new Vector2 (Mathf.Clamp(mouse_upposition.x - mouse_downposition.x, minPower.x, maxPower.x), Mathf.Clamp(mouse_upposition.y - mouse_downposition.y, minPower.y, maxPower.y));
-            rb.AddForce(- force * slingForce, ForceMode2D.Impulse);
-            //rb.AddForce(- direction * slingForce, ForceMode2D.Impulse);
+            direction = new Vector2 (Mathf.Clamp(mouse_upposition.x - mouse_downposition.x, minPower.x, maxPower.x), Mathf.Clamp(mouse_upposition.y - mouse_downposition.y, minPower.y, maxPower.y));
+            rb.AddForce(- direction * slingForce, ForceMode2D.Impulse);
         }
     }
-
+    // using the calculated clamped distance to allow the player character have physics acted on it and goes in the opposite way
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Platform"))
@@ -100,4 +99,5 @@ public class PlayerCharacter : MonoBehaviour
             stroke = true;
         }
     }
+    // makes sure the player character can only make movement if on a platform avoiding double inputs
 }
