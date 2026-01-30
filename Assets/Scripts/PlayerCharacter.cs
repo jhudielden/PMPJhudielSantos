@@ -29,44 +29,62 @@ public class PlayerCharacter : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            mouse_downposition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouse_downposition.z = 0;
-            if (Vector3.Distance(mouse_downposition, transform.position) < 0.5f)
-            {
-                isDragging = true;
-            }
-
+            GetMousePos();
         }
-        // getting the initial point of dragging and only is calcultated when mouse is on the player character
         if (Input.GetMouseButtonUp(0))
         {
-            mouse_upposition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouse_upposition.z = 0;
-            if (isDragging)
-            {
-                Movement();
-            }
-            isDragging = false;
+            FiringPlayer();
+        }
+        if (!isDragging)
+        {
             lr.enabled = false;
         }
+        else
+        {
+            SpriteManagement();
+        }
+    }
+
+    public void GetMousePos()
+    {
+        // getting the initial point of dragging and only is calcultated when mouse is on the player character
+        mouse_downposition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouse_downposition.z = 0;
+        if (Vector3.Distance(mouse_downposition, transform.position) < 0.5f)
+        {
+            isDragging = true;
+        }
+    }
+
+    public void FiringPlayer()
+    {
         // getting the last point of dragging to trigger Movement
+        mouse_upposition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouse_upposition.z = 0;
         if (isDragging)
         {
-            lr.enabled = true;
-            lr.SetPosition(0, transform.position);
-            lr.SetPosition(1, Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x > transform.position.x)
-            {
-                sr.flipX = true;
-            }
-            else
-            { sr.flipX = false; }
+            Movement();
         }
-
-        else
-        { lr.enabled = false; }
-        //  triggers the line renderer and allows the mirror flip of player character 
+        isDragging = false;
+        lr.enabled = false;
     }
+
+    public void SpriteManagement()
+    {
+        //  triggers the line renderer and allows the mirror flip of player character 
+        lr.enabled = true;
+        lr.SetPosition(0, transform.position);
+        lr.SetPosition(1, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x > transform.position.x)
+        {
+            sr.flipX = true;
+        }
+        else
+        { 
+            sr.flipX = false; 
+        }
+    }
+
     void Movement ()
     {
         if (stroke == true)
