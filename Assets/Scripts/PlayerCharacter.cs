@@ -8,8 +8,7 @@ public class PlayerCharacter : MonoBehaviour
     private Vector2 direction;
     public float slingForce;
     public float speed;
-    public Vector3 minPower;
-    public Vector3 maxPower;
+    public float maxPower;
     [SerializeField] private bool stroke;
     [SerializeField] private bool isDragging;
     public LineRenderer lr;
@@ -89,8 +88,10 @@ public class PlayerCharacter : MonoBehaviour
     {
         if (stroke == true)
         {
-            direction = new Vector2 (Mathf.Clamp(mouse_upposition.x - mouse_downposition.x, minPower.x, maxPower.x), Mathf.Clamp(mouse_upposition.y - mouse_downposition.y, minPower.y, maxPower.y));
-            rb.AddForce(- direction * slingForce, ForceMode2D.Impulse);
+            direction = mouse_upposition - mouse_downposition;
+            direction = Vector2.ClampMagnitude(direction, maxPower);
+            
+          rb.AddForce(- direction * slingForce, ForceMode2D.Impulse);
         }
     }
     // using the calculated clamped distance to allow the player character have physics acted on it and goes in the opposite way
