@@ -1,5 +1,6 @@
 using UnityEngine;
 using EditorAttributes;
+using CameraShake;
 
 public class PlayerCharacter : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class PlayerCharacter : MonoBehaviour
     public LineRenderer lr;
     private SpriteRenderer sr;
     private Rigidbody2D rb;
+
+    private Vector2 _storedVelocity;
+    [SerializeField] private bool _isGrounded;
+
+    [Header("Camera Shake Value")]
+    [SerializeField] private Vector2 minMaxShakeReq = new Vector2(2f, 5f);
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -91,9 +98,12 @@ public class PlayerCharacter : MonoBehaviour
             direction = mouse_upposition - mouse_downposition;
             direction = Vector2.ClampMagnitude(direction, maxPower);
             
-          rb.AddForce(- direction * slingForce, ForceMode2D.Impulse);
+            rb.AddForce(- direction * slingForce, ForceMode2D.Impulse);
         }
+
+        if (_isGrounded) _storedVelocity = rb.linearVelocity;
     }
+
     // using the calculated clamped distance to allow the player character have physics acted on it and goes in the opposite way
     private void OnCollisionStay2D(Collision2D collision)
     {
@@ -108,17 +118,44 @@ public class PlayerCharacter : MonoBehaviour
         if (collision.gameObject.CompareTag("Platform"))
         {
             stroke = false;
+
+            _isGrounded = false;
         }
     }
 
+    // makes sure the player character can only make movement if on a platform avoiding double inputs
     void OnCollisionEnter2D(Collision2D collision)
     {
         rb.linearVelocity = Vector3.zero;
         if (collision.gameObject.CompareTag("Platform"))
         {
             stroke = true;
-        }
-    }
-    // makes sure the player character can only make movement if on a platform avoiding double inputs
 
+            _isGrounded = true;
+
+            // Landed, do cam shake
+            CalculateCamShake();
+        }
+    } 
+
+    // Calculates the strength of the camera shake upon landing
+    private void CalculateCamShake()
+    {
+        float value = _storedVelocity.magnitude;
+
+        // If between min and max shake requirement: Do small shake!
+        if (value < minMaxShakeReq.y && value > minMaxShakeReq.x)
+        {
+            CameraShaker.Presets.ShortShake2D();
+            print("Did Shake Explosion " + value);
+        }
+        // If greater than the make shake requirement: Do heavy shake!
+        else if (value > minMaxShakeReq.y)
+        {
+            CameraShaker.Presets.Explosion2D();
+            print("Did Shake Explosion " + value);
+        }
+
+        print("Landed " + value);
+    }
 }
