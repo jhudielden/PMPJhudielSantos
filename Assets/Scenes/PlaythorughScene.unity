@@ -3554,37 +3554,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 311116491}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1373345908
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1373345909}
-  m_Layer: 0
-  m_Name: Skibidi
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1373345909
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1373345908}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.333297, y: 4.8422146, z: -0.13189468}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1578550200}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1443920670
 GameObject:
   m_ObjectHideFlags: 0
@@ -4253,6 +4222,7 @@ MonoBehaviour:
   stroke: 0
   isDragging: 0
   lr: {fileID: 1578550201}
+  TrajLine: {fileID: 0}
 --- !u!4 &1578550200
 Transform:
   m_ObjectHideFlags: 0
@@ -4265,8 +4235,7 @@ Transform:
   m_LocalPosition: {x: -0.06, y: -2.68, z: 0}
   m_LocalScale: {x: 1.4184, y: 1.4184, z: 1.4184}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1373345909}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &1578550201
