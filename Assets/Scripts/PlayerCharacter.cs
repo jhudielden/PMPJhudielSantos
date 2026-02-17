@@ -13,6 +13,7 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] private bool stroke;
     [SerializeField] private bool isDragging;
     public LineRenderer lr;
+    public LineRenderer TrajLR;
     private SpriteRenderer sr;
     private Rigidbody2D rb;
 
@@ -28,6 +29,7 @@ public class PlayerCharacter : MonoBehaviour
        rb = GetComponent<Rigidbody2D>();
        sr = GetComponent<SpriteRenderer>();
        lr.enabled = false;
+       TrajLR.enabled = false;
     }
 
     // Update is called once per frame
@@ -44,6 +46,7 @@ public class PlayerCharacter : MonoBehaviour
         if (!isDragging)
         {
             lr.enabled = false;
+            TrajLR.enabled = false;
         }
         else
         {
@@ -73,6 +76,7 @@ public class PlayerCharacter : MonoBehaviour
         }
         isDragging = false;
         lr.enabled = false;
+        TrajLR.enabled = false;
     }
 
     public void SpriteManagement()
@@ -81,6 +85,9 @@ public class PlayerCharacter : MonoBehaviour
         lr.enabled = true;
         lr.SetPosition(0, transform.position);
         lr.SetPosition(1, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        TrajLR.enabled = true;
+        TrajLR.SetPosition(0, transform.position);
+        TrajLR.SetPosition(1, Camera.main.ScreenToViewportPoint(- Input.mousePosition));
         if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x > transform.position.x)
         {
             sr.flipX = true;
