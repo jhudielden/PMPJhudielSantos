@@ -87,7 +87,7 @@ public class PlayerCharacter : MonoBehaviour
         lr.SetPosition(1, Camera.main.ScreenToWorldPoint(Input.mousePosition));
         TrajLR.enabled = true;
         TrajLR.SetPosition(0, transform.position);
-        TrajLR.SetPosition(1, Camera.main.ScreenToViewportPoint(- Input.mousePosition));
+        TrajLR.SetPosition(1, Camera.main.ScreenToWorldPoint(- Input.mousePosition));
         if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x > transform.position.x)
         {
             sr.flipX = true;
