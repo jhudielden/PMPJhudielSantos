@@ -30,6 +30,7 @@ public class MovingPlatform : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.transform.parent = transform;
+            //collision.gameObject.GetComponent<PlayerCharacter>().isMovingPlatform = true;
         }
     }
     private void OnCollisionExit2D(Collision2D collision)

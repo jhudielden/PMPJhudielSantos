@@ -12,6 +12,7 @@ public class PlayerCharacter : MonoBehaviour
     public float maxPower;
     [SerializeField] private bool stroke;
     [SerializeField] private bool isDragging;
+    [SerializeField] public bool isMovingPlatform;
     public LineRenderer lr;
     public LineRenderer TrajLR;
     private SpriteRenderer sr;
@@ -39,6 +40,12 @@ public class PlayerCharacter : MonoBehaviour
         {
             GetMousePos();
         }
+
+/*        if (isMovingPlatform == true && Input.GetMouseButton(0))
+        {
+            GetMousePos();
+        }*/
+
         if (Input.GetMouseButtonUp(0))
         {
             FiringPlayer();
@@ -74,6 +81,7 @@ public class PlayerCharacter : MonoBehaviour
         {
             Movement();
         }
+        isMovingPlatform = false;
         isDragging = false;
         lr.enabled = false;
         TrajLR.enabled = false;
@@ -85,17 +93,19 @@ public class PlayerCharacter : MonoBehaviour
         lr.enabled = true;
         lr.SetPosition(0, transform.position);
         lr.SetPosition(1, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        Vector3 trajDir = new Vector2(transform.position.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x , transform.position.y - Camera.main.ScreenToWorldPoint(Input.mousePosition).y).normalized;
+        Vector2 trajVector = transform.position + (trajDir * 2);
         TrajLR.enabled = true;
         TrajLR.SetPosition(0, transform.position);
-        TrajLR.SetPosition(1, Camera.main.ScreenToWorldPoint(- Input.mousePosition));
-        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x > transform.position.x)
+        TrajLR.SetPosition(1, trajVector);
+        /*if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x > transform.position.x)
         {
             sr.flipX = true;
         }
         else
         { 
             sr.flipX = false; 
-        }
+        }*/
     }
 
     void Movement ()
